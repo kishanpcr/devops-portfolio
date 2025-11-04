@@ -1,0 +1,29 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Build Docker image
+      run: docker build -t devops-portfolio:${{ github.sha }} .
+    
+    - name: Test Docker image
+      run: |
+        docker run -d -p 8080:80 --name test-container devops-portfolio:${{ github.sha }}
+        sleep 5
+        curl -f http://localhost:8080 || exit 1
+        docker stop test-container
+        docker rm test-container
+    
+    - name: Success notification
+      run: echo "✅ Build and tests passed!"
