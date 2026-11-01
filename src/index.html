@@ -3,39 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My DevOps Journey</title>
+    <meta name="description" content="Kishan Kumar's technical portfolio: Terraform infrastructure, Docker services, AWS provisioning, and GitHub Actions automation, with links to public source code.">
+    <meta name="theme-color" content="#142c36">
+    <title>Kishan Kumar | Infrastructure &amp; Automation</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Kishan's DevOps Portfolio - Live on the Web!</h1>
-        <p>Learning DevOps one project at a time</p>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="wordmark" href="#main" aria-label="Kishan Kumar, home">KK<span> / Kishan Kumar</span></a>
+            <nav aria-label="Main navigation">
+                <a href="#projects">Projects</a>
+                <a href="#skills">Technical focus</a>
+                <a href="#learning">Learning</a>
+                <a href="https://github.com/kishanpcr">GitHub <span aria-hidden="true">↗</span></a>
+            </nav>
+        </div>
     </header>
-    
-    <main>
-      <section class="about">
-    <h2>About This Project</h2>
-    <p>This is my first DevOps project featuring automated deployment!</p>
-    <p><strong>✨ Now live on the internet! ✨</strong></p>
-    <p>Every code change is automatically tested and deployed using GitHub Actions.</p>
-    <div id="build-info"></div>
-    </section>
-        
-        <section class="skills">
-            <h2>Skills I'm Learning</h2>
-            <ul>
-                <li>Git & GitHub</li>
-                <li>Docker</li>
-                <li>CI/CD Pipelines</li>
-                <li>Cloud Deployment</li>
-            </ul>
+
+    <main id="main" tabindex="-1">
+        <section class="hero container" aria-labelledby="intro-title">
+            <div>
+                <p class="eyebrow">Infrastructure · Automation · Security</p>
+                <h1 id="intro-title">Infrastructure as code.<br><span>Practice made visible.</span></h1>
+                <p class="intro">I'm Kishan Kumar. I use Terraform, Docker, and GitHub Actions to define infrastructure, automate delivery, and explore how services run together.</p>
+                <p class="hero-note">This portfolio brings together my public infrastructure labs and the code behind them.</p>
+                <div class="hero-actions">
+                    <a class="button" href="#projects">Explore the projects <span aria-hidden="true">↓</span></a>
+                    <a class="text-link" href="https://github.com/kishanpcr">View GitHub profile <span aria-hidden="true">↗</span></a>
+                </div>
+            </div>
+            <aside class="overview" aria-label="Portfolio at a glance">
+                <p class="eyebrow">Inside the repositories</p>
+                <dl>
+                    <div><dt>Provision</dt><dd>Terraform · AWS · Docker</dd></div>
+                    <div><dt>Automate</dt><dd>GitHub Actions · Shell</dd></div>
+                    <div><dt>Inspect</dt><dd>Health checks · Network rules</dd></div>
+                </dl>
+                <p>Source-linked projects, with implementation details and room to improve.</p>
+            </aside>
+        </section>
+
+        <section class="section container" id="projects" aria-labelledby="projects-title">
+            <div class="section-heading">
+                <div><p class="eyebrow">01 / Selected work</p><h2 id="projects-title">From configuration to services</h2></div>
+                <p>Personal labs and delivery code. Each project links to its repository and the implementation described here.</p>
+            </div>
+
+            <article class="project">
+                <div class="project-summary">
+                    <p class="project-kind">Container infrastructure lab</p>
+                    <h3>Terraform-managed Docker services</h3>
+                    <p>An Nginx status page and PostgreSQL service defined together in Terraform, with workspace-specific names, ports, and a shared Docker network.</p>
+                    <ul class="tags" aria-label="Technologies"><li>Terraform</li><li>Docker</li><li>Nginx</li><li>PostgreSQL</li></ul>
+                    <a class="text-link" href="https://github.com/kishanpcr/tf-docker-lab">Explore tf-docker-lab <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="project-detail">
+                    <h4>What the code demonstrates</h4>
+                    <ul>
+                        <li>Container lifecycle and network configuration, plus a host-mounted PostgreSQL data directory.</li>
+                        <li>HTTP and <code>pg_isready</code> health checks; a shell entrypoint waits for database readiness before generating the status page.</li>
+                        <li>Pull-request workflows for Terraform format, validation, and plan; a main-branch workflow for apply.</li>
+                    </ul>
+                    <p class="source-links">Inspect: <a href="https://github.com/kishanpcr/tf-docker-lab/blob/b06fa23c12f2c70b30e324f0bb0d23a4f77f03ac/main.tf">Resources &amp; checks</a> · <a href="https://github.com/kishanpcr/tf-docker-lab/blob/b06fa23c12f2c70b30e324f0bb0d23a4f77f03ac/files/generate_status.sh">Readiness script</a> · <a href="https://github.com/kishanpcr/tf-docker-lab/tree/b06fa23c12f2c70b30e324f0bb0d23a4f77f03ac/.github/workflows">Workflows</a></p>
+                    <p class="project-note"><strong>Lab boundary:</strong> example credentials and host-published database ports need review before reuse outside a local lab.</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="project-summary">
+                    <p class="project-kind">Cloud provisioning lab</p>
+                    <h3>AWS web infrastructure with Terraform</h3>
+                    <p>Configurable EC2 web instances bootstrapped with Apache, a security group, and an S3 bucket for static assets.</p>
+                    <ul class="tags" aria-label="Technologies"><li>Terraform</li><li>AWS EC2</li><li>Amazon S3</li><li>Linux</li></ul>
+                    <a class="text-link" href="https://github.com/kishanpcr/AWSWebserverTFScripts">Explore AWSWebserverTFScripts <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="project-detail">
+                    <h4>What the code demonstrates</h4>
+                    <ul>
+                        <li>AMI lookup, configurable instance count, environment tags, and shell-based web server bootstrap.</li>
+                        <li>HTTP/HTTPS ingress rules and SSH restricted to the <code>10.0.0.0/8</code> range.</li>
+                        <li>S3 versioning, AES256 server-side encryption, and all four public-access-block settings.</li>
+                    </ul>
+                    <p class="source-links">Inspect: <a href="https://github.com/kishanpcr/AWSWebserverTFScripts/blob/353053bec17c7119864794a68ec59d982afe49fe/aws/terraform/main.tf">EC2 &amp; network rules</a> · <a href="https://github.com/kishanpcr/AWSWebserverTFScripts/blob/353053bec17c7119864794a68ec59d982afe49fe/aws/terraform/s3.tf">S3 controls</a></p>
+                    <p class="project-note"><strong>Lab boundary:</strong> allowing port 443 does not configure TLS. Certificates, load balancing, and monitoring are follow-up work.</p>
+                </div>
+            </article>
+
+            <article class="project">
+                <div class="project-summary">
+                    <p class="project-kind">Delivery &amp; documentation</p>
+                    <h3>This portfolio, delivered as code</h3>
+                    <p>A small static website served by Nginx in Docker or published directly from its source directory to GitHub Pages.</p>
+                    <ul class="tags" aria-label="Technologies"><li>GitHub Actions</li><li>Docker</li><li>GitHub Pages</li><li>HTML / CSS</li></ul>
+                    <a class="text-link" href="https://github.com/kishanpcr/devops-portfolio">Explore devops-portfolio <span aria-hidden="true">↗</span></a>
+                </div>
+                <div class="project-detail">
+                    <h4>What the code demonstrates</h4>
+                    <ul>
+                        <li>A Docker image build and HTTP smoke test on pull requests and pushes to main.</li>
+                        <li>A separate Pages workflow that publishes <code>src/</code> on pushes to main.</li>
+                        <li>Semantic HTML and responsive CSS, without a framework, build step, or runtime JavaScript dependency.</li>
+                    </ul>
+                    <p class="source-links">Inspect: <a href="https://github.com/kishanpcr/devops-portfolio/blob/main/Dockerfile">Dockerfile</a> · <a href="https://github.com/kishanpcr/devops-portfolio/blob/main/.github/workflows/deploy.yml">Build &amp; smoke test</a> · <a href="https://github.com/kishanpcr/devops-portfolio/blob/main/.github/workflows/pages.yml">Pages deployment</a></p>
+                </div>
+            </article>
+        </section>
+
+        <section class="focus-band" id="skills" aria-labelledby="skills-title">
+            <div class="container section">
+                <p class="eyebrow">02 / Technical focus</p>
+                <h2 id="skills-title">Skills connected to implementation</h2>
+                <div class="focus-grid">
+                    <div><h3>Infrastructure as code</h3><p>Terraform resources, variables, workspaces, and environment naming across Docker and AWS labs.</p></div>
+                    <div><h3>Service operations</h3><p>Linux service bootstrap, container networking, database readiness, and health-check configuration.</p></div>
+                    <div><h3>Delivery automation</h3><p>Git-based review, Terraform plan/apply workflows, container image builds, and HTTP smoke tests.</p></div>
+                    <div><h3>Security controls</h3><p>Network access rules, S3 public access blocking, and storage encryption, alongside explicit review of lab limitations.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section container learning" id="learning" aria-labelledby="learning-title">
+            <div><p class="eyebrow">03 / Continuing development</p><h2 id="learning-title">The next layer</h2></div>
+            <div>
+                <h3>Kubernetes &amp; infrastructure security</h3>
+                <p>I'm working toward Kubernetes certifications through hands-on practice, while developing my understanding of security for AI agents and their infrastructure.</p>
+                <a class="text-link" href="https://github.com/kishanpcr">Follow my work on GitHub <span aria-hidden="true">↗</span></a>
+            </div>
         </section>
     </main>
-    
-    <footer>
-        <p>Deployed with ❤️ using DevOps practices</p>
+
+    <footer class="container site-footer">
+        <p>Kishan Kumar <span aria-hidden="true">/</span> Infrastructure &amp; Automation</p>
+        <a href="https://github.com/kishanpcr/devops-portfolio">Website source <span aria-hidden="true">↗</span></a>
     </footer>
-    
-    <script src="js/main.js"></script>
 </body>
 </html>
